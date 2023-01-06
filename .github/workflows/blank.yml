@@ -7,6 +7,7 @@ jobs:
     tf-plan: #Job criado para fazer o Terraform Plan e validar o que será aplicado.
       name: Plan infrastructure
       runs-on: ubuntu-latest
+      environment: prd
 
       permissions:
         id-token: write
