@@ -1,0 +1,28 @@
+name: 1-Plan Terraform Infrastructure
+
+on: [push, workflow_dispatch]
+
+jobs:
+
+    tf-plan: #Job criado para fazer o Terraform Plan e validar o que será aplicado.
+      name: Plan infrastructure
+      runs-on: ubuntu-latest
+
+      permissions:
+        id-token: write
+        contents: read
+   
+      steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: HashiCorp - Setup Terraform
+        uses: hashicorp/setup-terraform@v1.2.1
+
+      - name: Iac Config
+        run: |
+              make config
+
+      - name: Iac Plan
+        run: |
+              make plan
